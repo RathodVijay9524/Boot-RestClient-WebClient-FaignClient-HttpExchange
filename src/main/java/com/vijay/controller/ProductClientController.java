@@ -17,7 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.vijay.client.ProductServiceRestClient;
 import com.vijay.client.ProductServiceWebClient;
-
+import com.vijay.client.service.ProductFeignServiceClient;
+import com.vijay.client.service.ProductHttpExchangeServiceClient;
 import com.vijay.model.ProductRequest;
 import com.vijay.model.ProductResponse;
 import com.vijay.model.ProductResponses;
@@ -33,6 +34,13 @@ public class ProductClientController {
 	
 	@Autowired
 	private ProductServiceWebClient webClient;
+	
+	
+	@Autowired
+	private ProductHttpExchangeServiceClient httpExchangeClient;
+
+	@Autowired
+	private ProductFeignServiceClient productFeignService;
 
 	@PostMapping
 	public ResponseEntity<ProductResponse> addProduct(@RequestBody ProductRequest product) {
@@ -42,12 +50,12 @@ public class ProductClientController {
 
 	@GetMapping
 	public ResponseEntity<List<ProductResponse>> getAllProduct() {
-		List<ProductResponse> allProducts = restclient.getAllProducts();
+		List<ProductResponse> allProducts = webClient.getAllProducts();
 		return new ResponseEntity<>(allProducts, HttpStatus.ACCEPTED);
 	}
 	@GetMapping("/{id}")
     public ResponseEntity<ProductResponses> getProductById(@PathVariable("id") long productId){
-		  ProductResponses productById = restclient.getProductById(productId);
+		  ProductResponses productById = productFeignService.getProductById(productId);
         return new ResponseEntity<>(productById, HttpStatus.OK);
     }
 	@DeleteMapping("/{id}")

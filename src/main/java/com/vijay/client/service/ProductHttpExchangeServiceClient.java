@@ -30,8 +30,8 @@ public class ProductHttpExchangeServiceClient {
 		return httpExchangeClient.getAllProducts();
 	}
 
-	public ProductResponses getProduct(int id) {
-		ProductResponses productResponse = httpExchangeClient.getProduct(id);
+	public ProductResponses getProductById(long id) {
+		ProductResponses productResponse = httpExchangeClient.getProductById(id);
 
 		if (productResponse != null) {
 			CategoryResponse categoryResponse = catagepryHttpExchangeClient.getCategoryById(productResponse.getCategoryId());

@@ -24,7 +24,7 @@ public interface ProductClient {
     List<ProductResponse> getAllProducts();
 
     @GetExchange("/product/{id}")
-    ProductResponses getProduct(@PathVariable("id") int id);
+    ProductResponses getProductById(@PathVariable("id") long id);
 
     @PutExchange(value = "/product/{id}")
     ProductResponse updateProduct(@PathVariable("id") int id, @RequestBody ProductRequest product);

@@ -33,8 +33,8 @@ public class ProductFeignServiceClient {
 	        return productFeignClient.getAllProducts();
 	    }
 
-	    public ProductResponses getProduct(int id) {
-	    	ProductResponses productResponse = productFeignClient.getProduct(id);
+	    public ProductResponses getProductById(long id) {
+	    	ProductResponses productResponse = productFeignClient.getProductById(id);
 	        
 	    	 if (productResponse != null) {
 		            CategoryResponse categoryResponse = feignClient.getCategoryById(productResponse.getCategoryId());

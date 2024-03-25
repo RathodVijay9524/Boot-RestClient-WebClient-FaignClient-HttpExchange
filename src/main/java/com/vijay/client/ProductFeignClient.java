@@ -29,7 +29,7 @@ public interface ProductFeignClient {
     List<ProductResponse> getAllProducts();
 
     @GetMapping("/product/{id}")
-    ProductResponses getProduct(@PathVariable("id") int id);
+    ProductResponses getProductById(@PathVariable("id") long id);
 
     @PutMapping(value = "/product/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
     ProductResponse updateProduct(@PathVariable("id") int id, @RequestBody ProductRequest product);
